@@ -1214,14 +1214,7 @@ function setupErrorHandler(app2) {
   configureExpoAndLanding(app);
   setupErrorHandler(app);
   const port = parseInt(process.env.PORT || "5000", 10);
-  server.listen(
-    {
-      port,
-      host: "0.0.0.0",
-      reusePort: true
-    },
-    () => {
-      log(`express server serving on port ${port}`);
-    }
-  );
+  server.listen(port, "127.0.0.1", () => {
+    log(`express server serving on port ${port}`);
+  });
 })();
