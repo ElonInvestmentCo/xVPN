@@ -1,4 +1,4 @@
-import express from "express";
+﻿import express from "express";
 import type { Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { registerStripeWebhook } from "./stripe-routes";
@@ -75,7 +75,7 @@ function setupRequestLogging(app: express.Application) {
       }
 
       if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
+        logLine = logLine.slice(0, 79) + "â€¦";
       }
 
       log(logLine);
@@ -256,14 +256,9 @@ function setupErrorHandler(app: express.Application) {
   setupErrorHandler(app);
 
   const port = parseInt(process.env.PORT || "5000", 10);
-  server.listen(
-    {
-      port,
-      host: "0.0.0.0",
-      reusePort: true,
-    },
-    () => {
-      log(`express server serving on port ${port}`);
-    },
-  );
+  server.listen(port, "127.0.0.1", () => {
+    console.log(`Server is running on http://127.0.0.1:${port}`);
+    log(`express server serving on port ${port}`);
+  });
 })();
+
