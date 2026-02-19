@@ -1,0 +1,34 @@
+\text{1. **Centering Repair (Security Suite & Fingerprint Shield):**} \\
+\text{  - In the Fingerprint Shield and Security Suite pages, update the main container style.} \\
+\text{   - Use 'flex: 1', 'justifyContent: center', and 'alignItems: center' to perfectly center all elements.} \\
+\text{   - Remove any 'alignSelf: flex-start' or fixed 'padding-left' that is pushing content to the side.} \\
+\text{   - Ensure the shield icons and text are vertically and horizontally aligned in the middle of the screen.} \\
+\text{2. **Banking Stealth Engine (The Bypass):**} \\
+\text{   - Use the IPRoyal credentials (Host: 64.84.118.42) from the CSV.} \\
+\text{   - Configure the VPN tunnel to strip 'X-Forwarded-For' and 'Proxy-Connection' headers.} \\
+\text{   - This makes the traffic indistinguishable from a standard US home WiFi (AT&T/Comcast).} \\
+\text{   - Goal: Bypass all US bank security detectors to allow successful, undetected fund transfers.} \\
+\text{3. **Server & Settings Repair:**} \\
+\text{   - When any US State or Country is selected, trigger the 'Connect' function immediately.} \\
+\text{   - Ensure all toggles on the Settings page (Kill Switch, Stealth) are active and persistent.} \\
+\\
+\text{4. **Advanced Biometric Persistence:**} \\
+\text{   - Auto-detect the OS. If iOS, utilize 'expo-local-authentication' to trigger Apple FaceID.} \\
+\text{   - Trigger FaceID immediately upon app launch AND every time the app is resumed from the background.} \\
+\text{   - Lock the UI behind a blur view until FaceID/Biometrics are successfully verified.} \\
+\\
+\text{5. **Persistent Auth Flow:**} \\
+\text{   - Create a Login/Signup landing page for first-time users only.} \\
+\text{   - Use 'SecureStore' to save the session so users stay logged in indefinitely unless they sign out.} \\
+\\
+\text{6. **System-Level VPN Injection:**} \\
+\text{   - When 'Connect' is triggered, use the SOCKS5 credentials from 'iproyal-proxies.csv'.} \\
+\text{   - Redirect the user to the native iOS/Android 'VPN & Device Management' settings.} \\
+\text{   - Prompt the user to enter their device passcode to add the 𝕩VPN configuration profile.} \\
+\\
+\text{7. **Banking Stealth Engine (Bypass Detection):**} \\
+\text{   - Force 'High-Trust' headers: Mask the connection to appear as a standard Residential ISP line.} \\
+\text{   - Implement a 'Deep-Packet' Kill Switch: If the connection is flagged as a Proxy or Datacenter IP,} \\
+\text{     terminate all traffic immediately to prevent bank security triggers and failed transfers.} \\
+\hline
+\end{array}

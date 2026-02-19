@@ -1,0 +1,30 @@
+const Colors = {
+  dark: {
+    background: '#0F0F0F',
+    backgroundSecondary: '#1A1A1A',
+    backgroundTertiary: '#121212',
+    surface: 'rgba(255,255,255,0.05)',
+    surfaceBorder: 'rgba(255,255,255,0.1)',
+    surfaceBorderLight: 'rgba(255,255,255,0.06)',
+    accent: '#00F0FF',
+    accentPurple: '#C300FF',
+    accentCoral: '#FF2E63',
+    text: '#FFFFFF',
+    textSecondary: '#B0B0B0',
+    textMuted: '#666666',
+    success: '#00E676',
+    warning: '#FFB300',
+    danger: '#FF2E63',
+    tabIconDefault: '#666666',
+    tint: '#00F0FF',
+    tabIconSelected: '#00F0FF',
+    gradientStart: '#0F0F0F',
+    gradientMidPurple: '#1A0033',
+    gradientMidNavy: '#001F3F',
+    glowCyan: 'rgba(0, 240, 255, 0.3)',
+    glowPurple: 'rgba(195, 0, 255, 0.3)',
+    glowCoral: 'rgba(255, 46, 99, 0.2)',
+  },
+};
+
+export default Colors;

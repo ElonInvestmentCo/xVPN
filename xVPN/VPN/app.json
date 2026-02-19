@@ -1,0 +1,67 @@
+{
+  "expo": {
+    "name": "xVPN",
+    "slug": "xvpn",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "xvpn",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F0F0F"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.xvpn",
+      "entitlements": {
+        "com.apple.developer.networking.vpn.api": true,
+        "com.apple.developer.networking.extension": true,
+        "keychain-access-groups": ["$(AppIdentifierPrefix)com.xvpn"]
+      },
+      "infoPlist": {
+        "UIBackgroundModes": ["vpn-usage", "network-authentication"],
+        "NSLocalNetworkUsageDescription": "xVPN needs access to local network to manage VPN connections",
+        "NSBonjourServices": ["_http._tcp", "_https._tcp"],
+        "NSAllowsArbitraryLoads": true
+      }
+    },
+    "android": {
+      "package": "com.xvpn",
+      "adaptiveIcon": {
+        "backgroundColor": "#0F0F0F",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "android.permission.BIND_VPN_SERVICE",
+        "android.permission.CHANGE_NETWORK_STATE",
+        "android.permission.INTERNET",
+        "android.permission.CHANGE_WIFI_STATE",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.ACCESS_NOTIFICATION_POLICY",
+        "android.permission.QUERY_ALL_PACKAGES"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "https://replit.com/"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

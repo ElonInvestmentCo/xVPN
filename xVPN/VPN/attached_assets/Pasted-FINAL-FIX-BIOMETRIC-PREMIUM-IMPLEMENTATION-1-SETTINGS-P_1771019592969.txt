@@ -1,0 +1,123 @@
+FINAL FIX + BIOMETRIC + PREMIUM IMPLEMENTATION
+
+1️⃣ SETTINGS PAGE – FULLY FUNCTIONAL TOGGLES
+
+• Biometric Lock
+• DNS Leak Protection
+• Ad & Tracker Blocker
+• No-Log Policy (informational only)
+
+REQUIREMENTS:
+
+- All toggles must be clickable
+- Smooth animation
+- Loading state
+- No console errors
+- Persist state
+
+STATE STORAGE:
+- Use React state
+- Sync to backend (if logged in)
+- For biometric: use SecureStorage (NOT localStorage)
+
+------------------------------------------------------------
+
+BIOMETRIC LOCK (IMPORTANT – DO NOT SIMULATE)
+
+DO NOT simulate biometric authentication.
+
+Instead:
+
+📱 iOS:
+- Use LocalAuthentication (LAContext)
+- Trigger real Face ID system modal
+- Only enable toggle after successful authentication
+
+🤖 Android:
+- Use Android BiometricPrompt API
+- Trigger real fingerprint scanner
+
+IF authentication fails:
+- Keep toggle OFF
+- Show error toast
+
+WHEN enabled:
+- Lock app on launch
+- Re-authenticate when returning from background
+
+------------------------------------------------------------
+
+DNS Leak Protection & Ad Blocker
+
+- Toggle boolean state
+- Neon Cyan when ON
+- Gray when OFF
+- Show confirmation toast
+- Persist state
+
+------------------------------------------------------------
+
+No-Log Policy
+
+- Remove toggle
+- Label: “Audited – Always Active”
+- Non-interactive badge
+
+------------------------------------------------------------
+2️⃣ PREMIUM PAGE – MAKE ALL SERVERS CLICKABLE
+------------------------------------------------------------
+
+Servers must:
+- Be fully clickable
+- Have hover + pressed animation
+- Trigger connect attempt
+
+------------------------------------------------------------
+3️⃣ PREMIUM ACCESS LOGIC
+------------------------------------------------------------
+
+IF user NOT subscribed:
+- Clicking Premium server opens subscription modal
+- Disable connection
+- Highlight recommended plan
+
+IF user IS subscribed:
+- Connect instantly
+- Show connection animation
+- Update server status
+
+------------------------------------------------------------
+4️⃣ SUBSCRIPTION FLOW
+------------------------------------------------------------
+
+From Premium page:
+
+1. Show subscription modal
+2. Plan selection (Monthly / Yearly / Lifetime)
+3. Only one selectable
+4. Continue to payment
+5. Stripe secure checkout
+6. On success:
+   - Set isPremium = true
+   - Store subscriptionType
+   - Store expiresAt
+   - Store stripeCustomerId
+   - Unlock servers
+   - Auto-connect to selected server
+
+VERIFY PAYMENT SERVER-SIDE VIA STRIPE WEBHOOK
+
+Never trust frontend confirmation.
+
+------------------------------------------------------------
+5️⃣ FINAL RESULT
+
+✔ Toggles responsive
+✔ Real biometric authentication
+✔ Premium servers clickable
+✔ Non-subscribers blocked
+✔ Subscription modal works
+✔ Stripe payment secure
+✔ Premium unlocks instantly
+✔ No UI freezes
+✔ No console errors

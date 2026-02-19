@@ -1,0 +1,110 @@
+entrypoint = "README.md"
+modules = ["nodejs-20", "web", "python-3.11"]
+
+[nix]
+channel = "stable-25_05"
+packages = ["cargo", "libiconv", "rustc", "unzip"]
+
+[deployment]
+deploymentTarget = "cloudrun"
+build = ["sh", "-c", "npm run expo:static:build && npm run server:build"]
+run = ["npm", "run", "server:prod"]
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
+localPort = 8000
+externalPort = 8000
+
+[[ports]]
+localPort = 8081
+externalPort = 80
+
+[[ports]]
+localPort = 8082
+externalPort = 3001
+
+[env]
+PORT = "5000"
+
+[agent]
+stack = "EXPO"
+expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start App"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start Python API"
+
+[[workflows.workflow]]
+name = "Start App"
+author = "agent"
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start Backend"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start Frontend"
+
+[[workflows.workflow]]
+name = "Start Backend"
+author = "agent"
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run server:dev"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Start Frontend"
+author = "agent"
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run expo:dev"
+waitForPort = 8081
+ensurePreviewReachable = "/status"
+
+[[workflows.workflow]]
+name = "Start Python API"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd /home/runner/workspace && python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload"
+waitForPort = 8000
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[userenv]
+
+[userenv.shared]
+
+[userenv.development]
+STRIPE_PUBLISHABLE_KEY = "pk_test_51SK2CuAAOvK6t6Rbl1zKuI6zcgrUZp3dmPkEIgickauOtQi0WMOvc9SWkmMIN6fO0iO2PZ5Z5BZdzxU5HvdKdxk2009sXELnmI"
+STRIPE_SECRET_KEY = "sk_test_51SK2CuAAOvK6t6RbNtwusYUUfwScUiYw4CDNcww4FvazBEXQMeASbuWhOxZPoJJuIHBpQFLH6xz16YUbKhC0hPxj00uz1sdEhA"
+STRIPE_WEBHOOK_SECRET = "whsec_NvmF1ITWbqN7snHgxkyQahu3EbF2NLtR"
+
+[userenv.production]
+STRIPE_PUBLISHABLE_KEY = "pk_test_51SK2CuAAOvK6t6Rbl1zKuI6zcgrUZp3dmPkEIgickauOtQi0WMOvc9SWkmMIN6fO0iO2PZ5Z5BZdzxU5HvdKdxk2009sXELnmI"
+STRIPE_SECRET_KEY = "sk_test_51SK2CuAAOvK6t6RbNtwusYUUfwScUiYw4CDNcww4FvazBEXQMeASbuWhOxZPoJJuIHBpQFLH6xz16YUbKhC0hPxj00uz1sdEhA"
+STRIPE_WEBHOOK_SECRET = "whsec_NvmF1ITWbqN7snHgxkyQahu3EbF2NLtR"
